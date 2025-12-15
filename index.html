@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitline - Kits Odontológicos</title>
+    
+    <!-- Tailwind CSS (Estilização rápida) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons (Ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Fonte Base */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Efeito de Vidro (Glassmorphism) */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+        }
+
+        /* Animação de Entrada */
+        .fade-in-up {
+            animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Efeitos de Mouse (Hover) */
+        .hover-scale {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .hover-scale:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15);
+        }
+        .hover-scale:active {
+            transform: scale(0.98);
+        }
+
+        /* Efeito de Brilho no Botão Principal */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            animation: shine 4s infinite;
+        }
+        @keyframes shine {
+            0%, 50% { left: -100%; }
+            100% { left: 200%; }
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0"
+  }
+}
+</script>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-gray-900">
+
+    <!-- Imagem de Fundo (Fixa) -->
+    <div class="fixed inset-0 z-0">
+        <div class="absolute inset-0 bg-cover bg-center transform scale-105" 
+             style="background-image: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1920');">
+        </div>
+        <!-- Camada Escura para Legibilidade -->
+        <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-[3px]"></div>
+    </div>
+
+    <!-- Container Principal -->
+    <main class="relative z-10 w-full max-w-md mx-auto fade-in-up">
+        
+        <!-- Cartão de Vidro -->
+        <div class="glass-card rounded-3xl p-6 sm:p-8 flex flex-col gap-6 relative overflow-hidden">
+            
+            <!-- Reflexo Superior -->
+            <div class="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white/50 to-transparent pointer-events-none"></div>
+
+            <!-- Cabeçalho: Logo & Info -->
+            <header class="flex flex-col items-center text-center relative z-10">
+    
+    <img 
+        src="kitline.png" 
+        alt="Kitline Logo" 
+        class="w-48 h-auto object-contain mb-6"
+    >
+
+    <h2 class="text-xs font-bold text-[#0A4DA6] uppercase tracking-[0.2em] mb-2">
+        Soluções Odontológicas
+    </h2>
+
+    <p class="text-sm text-gray-800 font-semibold leading-snug max-w-[280px]">
+        Kits acadêmicos e profissionais com tecnologia de ponta e garantia estendida.
+    </p>
+
+</header>
+
+
+
+            <!-- Grade de Botões de Ação -->
+            <nav class="grid grid-cols-2 gap-3 relative z-10">
+                <!-- WhatsApp -->
+                <button onclick="handleClick('WhatsApp')" class="hover-scale group flex flex-col items-center justify-center p-4 rounded-2xl bg-gradient-to-br from-white/90 to-white/50 border border-white/60 text-[#0A4DA6] hover:bg-white transition-all cursor-pointer shadow-sm">
+                    <i class="fa-brands fa-whatsapp text-3xl mb-2 text-[#25D366] drop-shadow-sm group-hover:-translate-y-1 transition-transform"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide text-gray-700">WhatsApp</span>
+                </button>
+
+                <!-- Catálogo -->
+                <button onclick="handleClick('Catálogo')" class="hover-scale group flex flex-col items-center justify-center p-4 rounded-2xl bg-gradient-to-br from-white/90 to-white/50 border border-white/60 text-[#0A4DA6] hover:bg-white transition-all cursor-pointer shadow-sm">
+                    <i class="fa-solid fa-file-pdf text-3xl mb-2 text-[#0A4DA6] drop-shadow-sm group-hover:-translate-y-1 transition-transform"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide text-gray-700">Catálogo</span>
+                </button>
+
+                <!-- Consultor -->
+                <button onclick="handleClick('Consultor')" class="hover-scale group flex flex-col items-center justify-center p-4 rounded-2xl bg-gradient-to-br from-white/90 to-white/50 border border-white/60 text-[#0A4DA6] hover:bg-white transition-all cursor-pointer shadow-sm">
+                    <i class="fa-solid fa-headset text-3xl mb-2 text-[#0A4DA6] drop-shadow-sm group-hover:-translate-y-1 transition-transform"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide text-gray-700">Consultor</span>
+                </button>
+
+                <!-- Site -->
+                <button onclick="handleClick('Site')" class="hover-scale group flex flex-col items-center justify-center p-4 rounded-2xl bg-gradient-to-br from-white/90 to-white/50 border border-white/60 text-[#0A4DA6] hover:bg-white transition-all cursor-pointer shadow-sm">
+                    <i class="fa-solid fa-globe text-3xl mb-2 text-[#0A4DA6] drop-shadow-sm group-hover:-translate-y-1 transition-transform"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide text-gray-700">Site Oficial</span>
+                </button>
+            </nav>
+
+            <!-- Botão de Destaque (CTA) -->
+            <button onclick="handleClick('Orçamento')" class="hover-scale btn-shine w-full py-4 bg-[#0A4DA6] text-white rounded-xl shadow-lg shadow-blue-900/30 font-bold tracking-wider uppercase text-sm relative z-10 flex items-center justify-center gap-3 group border border-[#0A4DA6]/50">
+                <span>Solicitar Orçamento</span>
+                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </button>
+
+            <!-- Produto em Destaque -->
+            <div class="relative z-10 mt-2 bg-white/70 rounded-2xl p-4 border border-white/60 shadow-inner">
+                <h3 class="text-[#0A4DA6] font-bold text-[11px] mb-3 uppercase tracking-wider text-center">
+                    Destaque: Kit Acadêmico
+                </h3>
+                
+                <div class="flex flex-col sm:flex-row gap-4 items-center">
+                    <!-- Imagem do Produto -->
+                    <div class="w-full sm:w-24 h-48 sm:h-24 flex-shrink-0 rounded-xl overflow-hidden shadow-md relative group bg-black border border-gray-200">
+                        <!-- Imagem Atualizada para o Conceito Dark -->
+                        <img 
+                            src="kitline-o-melhor-do-brasil.png" 
+                            alt="Kit Acadêmico Kitline"
+                            class="w-full h-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-black/10"></div>
+                    </div>
+                    
+                    <div class="flex-1 text-center sm:text-left">
+                        <h4 class="text-gray-900 font-bold text-base leading-tight mb-1">
+                            Kit Acadêmico Completo
+                        </h4>
+                        <p class="text-gray-700 text-xs mb-3 leading-relaxed font-medium">
+                            Peça de Mão, Micromotor e Contra-ângulo. Alta performance clínica.
+                        </p>
+                        
+                        <button onclick="handleClick('Detalhes do Kit')" class="inline-flex items-center gap-2 text-xs font-bold text-[#0A4DA6] hover:text-[#2E8B57] transition-colors py-1 px-2 rounded-lg hover:bg-white/50 border border-transparent hover:border-[#0A4DA6]/20">
+                            Ver Detalhes
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rodapé -->
+            <footer class="mt-2 flex flex-col items-center gap-4 relative z-10">
+                <div class="flex items-center justify-center gap-6">
+                    <a href="#" onclick="handleClick('Instagram')" class="text-gray-600 hover:text-[#E1306C] transition-transform hover:scale-125 duration-300">
+                        <i class="fa-brands fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" onclick="handleClick('WhatsApp Footer')" class="text-gray-600 hover:text-[#25D366] transition-transform hover:scale-125 duration-300">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                    </a>
+                    <a href="#" onclick="handleClick('LinkedIn')" class="text-gray-600 hover:text-[#0077B5] transition-transform hover:scale-125 duration-300">
+                        <i class="fa-brands fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" onclick="handleClick('Email')" class="text-gray-600 hover:text-gray-800 transition-transform hover:scale-125 duration-300">
+                        <i class="fa-regular fa-envelope text-xl"></i>
+                    </a>
+                </div>
+                <p class="text-[10px] text-gray-500 font-medium tracking-wide">
+                    © 2025 – Kitline. Todos os direitos reservados.
+                </p>
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- Script de Interação Básica -->
+    <script>
+        function handleClick(action) {
+            console.log("Ação clicada:", action);
+            // Aqui você pode adicionar links reais, ex:
+            // if (action === 'WhatsApp') window.location.href = 'https://wa.me/55...';
+            alert('Ação acionada: ' + action);
+        }
+    </script>
+</body>
+</html>
